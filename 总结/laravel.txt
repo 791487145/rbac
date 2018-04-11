@@ -1,0 +1,25 @@
+1.函数：
+	（1）array_except（$a,$k）将数组a中键值为k的删掉
+	 (2) array_pluck($a,$k)方法从数组$a中返回给定键$k对应的键值对列表：
+	 (3) array_flatten($a)将数组变为一维数组
+
+
+2.路由：
+Route::match(['get', 'post'], 'game/{id}/edit', 'GameController@singleEdit');
+
+3.视图
+view()->composer()
+
+4.
+
+
+
+
+
+
+
+
+
+
+
+

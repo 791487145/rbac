@@ -1,0 +1,13 @@
+1.php.ini  
+	(1)$HTTP_RAW_POST_DATA未定义时改  always_populate_raw_post_data = -1
+	(2)extension=php_fileinfo.dll
+
+2.phpstudy安装redis
+ （1）phpinfo查看相应的vc版本及PHP版本
+ （2）http://windows.php.net/downloads/pecl/releases/redis/3.1.4  下载里redis
+  （3）http://windows.php.net/downloads/pecl/releases/igbinary/  下载igbinary
+ （4）将四个文件放到ext目录下
+ （5）在php.ini里加入： ；php_redis
+extension=php_igbinary.dll
+extension=php_igbinary.dll
+extension=php_redis.dll

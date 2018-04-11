@@ -1,0 +1,16 @@
+1.更新源：
+（1）删除/var/lib/apt/lists/partial/下所有文件  
+cd /var/lib/apt/lists/partial/   rm -f *
+（2）sudo vi /etc/resolvconf/resolv.conf.d/base 写入nameserver 8.8.8.8  nameserver 8.8.4.4
+（3）sudo resolvconf -u
+
+2.composer安装
+php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
+
+
+php composer-setup.php
+
+
+php -r "unlink('composer-setup.php');"
+
+sudo mv composer.phar /usr/local/bin/composer

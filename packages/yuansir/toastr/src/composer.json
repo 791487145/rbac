@@ -1,0 +1,18 @@
+{
+    "name": "szh/toastr-for-laravel",
+    "description": "toastr.js for laravel5",
+    "authors": [
+        {
+            "name": "szh",
+            "email": "791487145@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+	
+	"autoload": {
+        "psr-4": {
+            "Yuansir\\Toastr\\": "src/"
+        }
+    }
+}

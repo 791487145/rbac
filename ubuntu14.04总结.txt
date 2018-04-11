@@ -1,0 +1,147 @@
+1.更新源：
+（1）删除/var/lib/apt/lists/partial/下所有文件  
+cd /var/lib/apt/lists/partial/   rm -f *
+（2）sudo vi /etc/resolvconf/resolv.conf.d/base 写入nameserver 8.8.8.8  nameserver 8.8.4.4
+（3）sudo resolvconf -u
+
+2.composer安装
+php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
+
+
+php composer-setup.php
+
+
+php -r "unlink('composer-setup.php');"
+
+sudo mv composer.phar /usr/local/bin/composer
+
+
+1.更新源(方法1)：
+（1）删除/var/lib/apt/lists/partial/下所有文件  
+cd /var/lib/apt/lists/partial/   rm -f *
+（2）sudo vi /etc/resolvconf/resolv.conf.d/base 写入nameserver 8.8.8.8  nameserver 8.8.4.4
+（3）sudo resolvconf -u
+
+    （方法二）：
+	（1）sudo vi  /etc/resolvconf/resolv.conf.d/base
+	（2）写入nameserver 8.8.8.8
+		nameserver 8.8.4.4保存
+	（3）sudo resolvconf -u
+	（4）$ cat /etc/resolv.conf
+	（5）apt-get update
+
+
+
+2.composer安装
+php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
+
+
+php composer-setup.php
+
+
+php -r "unlink('composer-setup.php');"
+
+sudo mv composer.phar /usr/local/bin/composer
+
+
+虚拟机配置ubuntu php环境
+1更新
+sudo su
+sudo apt-get update；
+2安装nginx
+sudo apt-get install nginx
+service nginx start
+ifconfig找到ip浏览器测试
+3安装数据库
+sudo apt-get install mysql-server php5-mysql
+输入mysql -uroot -p判断是否成功
+4安装php-fpm
+sudo apt-get install php5-fpm
+配置
+sudo vi /etc/php5/fpm/php.ini；
+将 cgi.fix_pathinfo=1 改为 cgi.fix_pathinfo=0；
+sudo service php5-fpm restart
+5配置nginx
+sudo vi /etc/nginx/sites-enable/default
+service中root为项目目录root  /mnt/hgfs/....
+下一行增加一个index.php
+将
+location ~ .php$ {
+# fastcgi_split_path_info ^(.+.php)(/.+)$;
+# # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+#
+# # With php5-cgi alone:
+# fastcgi_pass 127.0.0.1:9000;
+# # With php5-fpm:
+# fastcgi_pass unix:/var/run/php5-fpm.sock;
+# fastcgi_index index.php;
+# include fastcgi_params;
+}
+改为
+location / {
+		
+# First attempt to serve request as file, then
+		
+# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ /index.php?$query_string;
+		
+# Uncomment to enable naxsi on this location
+		
+# include /etc/nginx/naxsi.rules
+	}
+
+
+location ~ \.php$ {
+		
+fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	
+#	# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+	#
+	
+#	# With php5-cgi alone:
+		
+fastcgi_pass 127.0.0.1:9000;
+	
+#	# With php5-fpm:
+	
+#	fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		
+include fastcgi_params;
+	
+}
+重启nginx
+6改www.conf
+vi /etc/php5/fpm/pool.d/www.conf
+注释listen=/var/rmp。。。
+改为listen=127.0.0.1:9000
+
+7下载vmware tool
+（1）mkdir /mnt/cdrom（2）mount /dev/cdrom /mnt/cdrom/（3）cd /mnt/cdrom  ll(4)cp Vm4r......tar.gz  /mnt/
+(5)cd /mnt  然后    tar -xzvf Vm....  (6)cd vmware-tools-distrib  (7)sudo ./vmware-install.pl  （8）第一步yes，随后回车
+
+8连接xshell
+（1）ssh localhost   (2)apt-get install openssh-server    (3)cd /etc/ssh/  ll
+(4)apt-get install vim     (5)vim sshd_config   找到PermitRootLogin 改为yes
+
+
+9.navicat连接数据库
+（1）mysql -uroot -p   ;    (2)grant all privileges on *.* to  souvc@"%" identified by "abc123" with grant option;  souvc为帐号，abc123为密码
+（3）flush privileges;       （0）将/etc/mysql/my.conf 中bind注释
+6改www.conf
+vi /etc/php5/fpm/pool.d/www.conf
+注释listen=/var/rmp。。。
+改为listen=127.0.0.1:9000
+
+7下载vmware tool
+（1）mkdir /mnt/cdrom（2）mount /dev/cdrom /mnt/cdrom/（3）cd /mnt/cdrom  ll(4)cp Vm4r......tar.gz  /mnt/
+(5)cd /mnt  然后    tar -xzvf Vm....  (6)cd vmware-tools-distrib  (7)sudo ./vmware-install.pl  （8）第一步yes，随后回车
+
+8连接xshell
+（1）ssh localhost   (2)apt-get install openssh-server    (3)cd /etc/ssh/  ll
+(4)apt-get install vim     (5)vim sshd_config   找到PermitRootLogin 改为yes
+
+
+9.navicat连接数据库
+（1）mysql -uroot -p   ;    (2)grant all privileges on *.* to  souvc@"%" identified by "abc123" with grant option;  souvc为帐号，abc123为密码
+（3）flush privileges;       （0）将/etc/mysql/my.conf 中bind注释
